@@ -1,0 +1,41 @@
+body {
+  background-image: url("bgd.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat-y;
+  font-family: 'Open Sans', sans-serif;
+}
+
+ul {
+  margin-top: 2rem;
+}
+
+li {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 18px;
+ }
+ 
+a:hover {
+  text-decoration: none;
+}
+
+.completed {
+  text-decoration: line-through;
+  background: rgba(149, 165, 166, .3);
+  color: grey;
+}
+.noncompleted{
+  background: rgba(149, 165, 166, .3);
+  color: blue;
+}
+
+#title {
+  margin-top: 13rem;
+  margin-bottom: 2.5rem;
+  font-size: 8rem;
+}
+
+#del-btn {
+  margin-top: 1.5rem;
+}

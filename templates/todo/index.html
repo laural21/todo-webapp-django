@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TodoList</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="{% static 'todo/style.css' %}" />
+  </head>
+  
+  <body>
+    <div class="container">
+        <h2 class="text-center display-3" id="title">My Day</h2>
+          <div class="row">
+            <form class="col-8 mx-auto" action="{% url 'add' %}" method="POST" role="form">
+			{% csrf_token %}
+			<div class="form-group">
+				<div class="input-group">
+				 {{ form.content }}
+      				<span class="input-group-btn">
+      				  <button type="submit" class="mdl-button mdl-js-button" id="add-btn">add new</button>
+      				</span>
+  			   </div>
+  			  </div>
+			</form>
+          </div>
+          <ul class="col-8 mx-auto list-container">
+            {% for todo in all_todos %}
+              {% if todo.completed %}
+              <a href="{% url 'deselect' todo.id %}"><li class="mdl-list__item completed">{{ todo.content }}</li></a>
+              {% else %}
+			<a href="{% url 'complete' todo.id %}"><li class="mdl-list__item noncompleted">{{ todo.content }}</li></a>
+              {% endif %}
+            {% endfor %}
+		</ul>
+      <div class="col-8 mx-auto">
+        <form action="{% url 'deleteCompleted' %}"
+            method="post">{% csrf_token %}
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised" id="del-btn">delete selected</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
